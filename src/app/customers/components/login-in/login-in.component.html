@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-xs-6">
+    <h3>登录</h3>
+  </div>
+  <div class="col-xs-6">
+    <a>忘记密码</a>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <!--监听NgForm指令的ngSubmit事件-->
+    <form (ngSubmit)="logIn();" #logInForm="ngForm">
+      <!--绑定手机号码-->
+      <input type="tel" name="phone" class="form-control" placeholder="手机号码" [(ngModel)]="customer.phone" required pattern="^\d{11}$"
+             #phoneModel="ngModel" />
+      <div class="validationTips" *ngIf="!phoneModel.valid && (phoneModel.touched || phoneModel.dirty)">
+        <div class="validationTip" [hidden]="!phoneModel?.errors?.required">请输入您的手机号码</div>
+        <div class="validationTip" [hidden]="!phoneModel?.errors?.pattern">请输入 11 位数字</div>
+      </div>
+      <!--绑定密码-->
+      <input type="password" name="password" class="form-control" placeholder="密码" [(ngModel)]="customer.password" required pattern="^[^<>'\s&quot;]{6,16}$"
+             #passwordModel="ngModel" />
+      <div class="validationTips" *ngIf="!passwordModel.valid && (passwordModel.touched || passwordModel.dirty)">
+        <div class="validationTip" [hidden]="!passwordModel?.errors?.required">请输入您的密码</div>
+        <div class="validationTip" [hidden]="!passwordModel?.errors?.pattern">请输入不包含&lt;、&gt;、'、"和空格的 6 至 16个字符</div>
+      </div>
+      <div>
+        <label for="persist">
+          记住登录状态
+        </label>
+        <input type="checkbox" name="persist" id="persist" [(ngModel)]="shouldPersist" />
+        <!--绑定对于是否记住登录状态的选择-->
+        <div>
+          <span class="glyphicon glyphicon-ok"></span>
+        </div>
+      </div>
+      <button type="submit" class="btn" [disabled]="!logInForm.valid">登录</button>
+    </form>
+    <span>
+            登录本网站即表明您同意我们的
+            <a>使用和销售条款条件</a>及
+            <a>隐私声明</a>
+        </span>
+  </div>
+</div>

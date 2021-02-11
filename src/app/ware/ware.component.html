@@ -1,0 +1,48 @@
+<div class="row">
+  <div *ngFor="let ware of wares" class="col-xs-12 col-md-6">
+    <div class="row wareRow">
+      <div class="col-xs-4">
+        <img alt="ware" [src]="ware.thumbnailUrl" [title]="ware.name" />
+      </div>
+      <div class="col-xs-8">
+        <div [ngSwitch]="ware.promotion">
+          <span *ngSwitchCase="1">[减]</span>
+          <span *ngSwitchCase="2">[赠]</span>
+          <span *ngSwitchCase="3">[返]</span>
+          <a href="#" *ngSwitchDefault>[促销通知]</a>
+          <a [routerLink]="['/ware-detail', ware.id]" [attr.aria-label]="'导航到' + ware.name + '的详情页面'">{{ware.name}}</a>
+        </div>
+        <div class="row">
+          <div class="col-xs-5">
+            库存：
+          </div>
+          <div class="col-xs-7" [style.color]="ware.stock == 0 ? '#999' : (ware.stock < 10 ? '#B12704' : 'inherit')" [style.font-weight]="ware.stock > 0 && ware.stock < 10 ? 'bold' : 'initial'">
+            <span *ngIf="ware.stock == 0; else onSale">已售罄</span>
+            <ng-template #onSale>
+              <span *ngIf="ware.stock < 10; else sellingOut">仅剩{{ware.stock}}斤</span>
+              <ng-template #sellingOut>
+                <span>{{ware.stock}}斤</span>
+              </ng-template>
+            </ng-template>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-5">
+            价格：
+          </div>
+          <div class="col-xs-7" [class.cheap]="ware.price < 1" [class.fontGray]="ware.stock == 0">
+            {{ware.price | currency:'CNY':'symbol-narrow' }}元/斤
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-5">
+            上架时间：
+          </div>
+          <div class="col-xs-7">
+            {{ware.addedTime | date:'yyyy-MM-dd HH:mm'}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

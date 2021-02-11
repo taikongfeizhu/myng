@@ -1,0 +1,57 @@
+<h3>注册新客户</h3>
+<div class="row">
+  <div class="col-xs-12">
+    <!--使用Angular表单指令NgForm-->
+    <form ngForm (ngSubmit)="signUp();" #signUpForm="ngForm">
+      <!--模板引用变量-->
+      <input type="text" name="name" class="form-control" placeholder="您的姓名" [(ngModel)]="customer.name" required minlength="2"
+             maxlength="8" pattern="^[^<>'\s&quot;]+$" #nameModel="ngModel" />
+      <!--使用模型绑定指令NgModel-->
+      <div class="validationTips" *ngIf="!nameModel.valid && (nameModel.touched || nameModel.dirty)">
+        <!--使用NgModel指令的errors属性-->
+        <div class="validationTip" [hidden]="!nameModel?.errors?.required">请输入您的姓名</div>
+        <div class="validationTip" [hidden]="!nameModel?.errors?.minlength">请至少输入 2 个字符</div>
+        <div class="validationTip" [hidden]="!nameModel?.errors?.maxlength">请最大输入 8 个字符</div>
+        <div class="validationTip" [hidden]="!nameModel?.errors?.pattern">请不要输入&lt;、&gt;、'、"和空格</div>
+      </div>
+      <!--绑定手机号码-->
+      <input type="tel" name="phone" class="form-control" placeholder="您的手机号码" [(ngModel)]="customer.phone" required pattern="^\d{11}$"
+             #phoneModel="ngModel" />
+      <div class="validationTips" *ngIf="!phoneModel.valid && (phoneModel.touched || phoneModel.dirty)">
+        <div class="validationTip" [hidden]="!phoneModel?.errors?.required">请输入您的手机号码</div>
+        <div class="validationTip" [hidden]="!phoneModel?.errors?.pattern">请输入 11 位数字</div>
+      </div>
+      <!--绑定密码-->
+      <input type="password" name="password" class="form-control" placeholder="创建密码" [(ngModel)]="customer.password" required minlength="6"
+             maxlength="16" pattern="^[^<>'\s&quot;]+$" #passwordModel="ngModel" />
+      <div class="validationTips" *ngIf="!passwordModel.valid && (passwordModel.touched || passwordModel.dirty)">
+        <div class="validationTip" [hidden]="!passwordModel?.errors?.required">请输入您的密码</div>
+        <div class="validationTip" [hidden]="!passwordModel?.errors?.minlength">请至少输入 6 个字符</div>
+        <div class="validationTip" [hidden]="!passwordModel?.errors?.maxlength">请最大输入 16 个字符</div>
+        <div class="validationTip" [hidden]="!passwordModel?.errors?.pattern">请不要输入&lt;、&gt;、'、"和空格</div>
+      </div>
+      <!--绑定邮箱地址-->
+      <input type="email" name="email" class="form-control" placeholder="您的邮箱地址（可选）" [(ngModel)]="customer.profile.email" minlength="6"
+             maxlength="30" pattern="^[^@<>'\s&quot;]+?@[^@<>'\s&quot;]+?\.[^@<>'\s&quot;]+$" #emailModel="ngModel" />
+      <div class="validationTips" *ngIf="!emailModel.valid && (emailModel.touched || emailModel.dirty)">
+        <div class="validationTip" [hidden]="!emailModel?.errors?.minlength">请至少输入 6 个字符</div>
+        <div class="validationTip" [hidden]="!emailModel?.errors?.maxlength">请最大输入 30 个字符</div>
+        <div class="validationTip" [hidden]="!emailModel?.errors?.pattern">请输入格式为a@b.c的邮箱地址，并保证未输入&lt;、&gt;、'、"和空格</div>
+      </div>
+      <div>
+        <label for="agree">
+          我已阅读并同意网站的
+          <a>使用条款</a>及
+          <a>隐私声明</a>
+        </label>
+        <input type="checkbox" name="agree" id="agree" [(ngModel)]="agree" required />
+        <!--绑定隐私条款选择-->
+        <div>
+          <span class="glyphicon glyphicon-ok"></span>
+        </div>
+      </div>
+      <!--阻止非法表单的提交-->
+      <button type="submit" class="btn" [disabled]="!signUpForm.valid">注册您的账户</button>
+    </form>
+  </div>
+</div>

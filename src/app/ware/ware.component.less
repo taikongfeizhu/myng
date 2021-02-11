@@ -1,0 +1,52 @@
+.cheap {
+  color: #B12704;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.fontGray {
+  color: #999;
+}
+
+img {
+  width: 100%;
+}
+
+/*商品行：每一个商品都被显示在一个行中*/
+.wareRow {
+  margin-bottom: 10px;
+}
+/*商品行图片列*/
+.wareRow > .col-xs-4 {
+  padding-right: 10px;
+}
+/*商品行属性列：所有的属性被一起显示在一个列中*/
+.wareRow > .col-xs-8 {
+  padding-left: 5px;
+}
+
+/*商品属性行：每一个属性被显示在一个行中*/
+.wareRow > .col-xs-8 > div.row {
+  font-size: 13px;
+  padding-left: 15px;
+  margin-bottom: 5px;
+}
+
+/*商品名称行，未分列*/
+.wareRow > .col-xs-8 > div:first-child {
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+
+.wareRow > .col-xs-8 > div:first-child > a:last-child {
+  font-size: 15px;
+}
+
+/*商品属性行中的列*/
+.wareRow > .col-xs-8 > div.row > div {
+  padding: 0;
+}
+/*商品属性值的列*/
+.wareRow > .col-xs-8 > div.row > div.col-xs-7 {
+  padding: 0 15px 0 2px;
+}

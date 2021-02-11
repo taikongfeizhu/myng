@@ -1,0 +1,48 @@
+<div [ngSwitch]="ware?.promotion">
+  <span *ngSwitchCase="1">[减]</span>
+  <span *ngSwitchCase="2">[赠]</span>
+  <span *ngSwitchCase="3">[返]</span>
+  <a href="#" *ngSwitchDefault>[促销通知]</a>
+  {{ware?.name}}
+</div>
+<!--商品名称结束-->
+<div>
+  {{ware?.description}}
+</div>
+<!--商品描述结束-->
+<div class="wareImageContainer">
+  <img [src]="ware?.imageUrl" />
+</div>
+<!--商品图片结束-->
+<div>
+  上架时间: {{ware?.addedTime | date:'yyyy-MM-dd HH:mm'}}
+</div>
+<!--上架时间结束-->
+<div>
+  售价:
+  <span [class.cheap]="ware?.price < 1">
+        {{ware?.price | currency:'CNY':'symbol-narrow' }}
+    </span>
+  元/斤
+</div>
+<!--售价结束-->
+<div>
+  库存:
+  <span *ngIf="ware?.stock == 0; else onSale">已售罄</span>
+  <ng-template #onSale>
+    <span *ngIf="ware?.stock < 10; else sellingOut" class="sellingOut">仅剩{{ware?.stock}}斤</span>
+    <ng-template #sellingOut>
+      <span>{{ware?.stock}}斤</span>
+    </ng-template>
+  </ng-template>
+</div>
+<!--库存结束-->
+<div>
+  数量:
+  <input type="number" name="wareCount" [value]="wareCount" />
+</div>
+<!--购买数量结束-->
+<div>
+  <button type="button">加入购物车</button>
+</div>
+<!--加入购物车按钮结束-->
