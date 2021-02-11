@@ -1,1 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
+/*Body样式*/
+body {
+  position: relative;
+  height: 100vh;
+}
+
+/*Bootstrap列等高*/
+.row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.row > [class*='col-'] {
+  display: flex;
+  flex-direction: column;
+}
+
+/*宽屏行样式*/
+@media (min-width:992px) {
+  .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .row > [class*='col-'] {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+

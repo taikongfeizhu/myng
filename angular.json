@@ -31,6 +31,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.less"
             ],
             "scripts": []
@@ -68,7 +69,14 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "myng:build"
+            "browserTarget": "myng:build",
+            "liveReload": true,
+            "open": true,
+            "host": "localhost",
+            "port": 8080,
+            "servePath": "/",
+            "publicHost": "localhost",
+            "proxyConfig": "config/ngcli-proxy-config.js"
           },
           "configurations": {
             "production": {
@@ -127,5 +135,8 @@
       }
     }
   },
-  "defaultProject": "myng"
+  "defaultProject": "myng",
+  "cli": {
+    "analytics": "d3591811-199e-4bc8-901b-425c35c9b933"
+  }
 }
