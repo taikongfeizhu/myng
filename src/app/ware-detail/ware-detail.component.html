@@ -1,48 +1,78 @@
-<div [ngSwitch]="ware?.promotion">
-  <span *ngSwitchCase="1">[减]</span>
-  <span *ngSwitchCase="2">[赠]</span>
-  <span *ngSwitchCase="3">[返]</span>
-  <a href="#" *ngSwitchDefault>[促销通知]</a>
-  {{ware?.name}}
+<div class="row">
+  <div class="col-xs-12 col-md-6 nameDescription">
+    <div [ngSwitch]="ware?.promotion">
+      <span *ngSwitchCase="1">[减]</span>
+      <span *ngSwitchCase="2">[赠]</span>
+      <span *ngSwitchCase="3">[返]</span>
+      <a href="#" *ngSwitchDefault>[促销通知]</a>
+      <span>{{ware?.name}}</span>
+    </div>
+    <div>{{ware?.description}}</div>
+  </div>
+  <div class="col-xs-12 col-md-6 wareImageContainer">
+    <img [src]="ware?.imageUrl" />
+  </div>
+  <div class="col-xs-12 col-md-6 rest">
+    <div class="row">
+      <div class="col-xs-6 col-md-2">上架时间:</div>
+      <div class="col-xs-6 col-md-10">{{ware?.addedTime | date:'yyyy-MM-dd HH:mm'}}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6 col-md-2">库存:</div>
+      <div class="col-xs-6 col-md-10">
+        <span *ngIf="ware.stock == 0; else onSale">已售罄</span>
+        <ng-template #onSale>
+          <span *ngIf="ware.stock < 10; else sellingOut" class="sellingOut">仅剩{{ware?.stock}}斤</span>
+          <ng-template #sellingOut>
+            <span>{{ware?.stock}}斤</span>
+          </ng-template>
+        </ng-template>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6 col-md-2">价格:</div>
+      <div class="col-xs-6 col-md-10" [class.cheap]="ware.price < 1">{{ware?.price | currency:'CNY':'symbol-narrow' }}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6 col-md-2"></div>
+      <div class="col-xs-6 col-md-10">
+        <a href="#">免费配送</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-md-6 tip">
+    <div class="row">
+      <div class="col-xs-12">
+        <span>10:00</span>之前下单，
+        <span>11:00</span>之前送达</div>
+      <div class="col-xs-12">
+        <span>15:00</span>之前下单，
+        <span>16:00</span>之前送达</div>
+      <div class="col-xs-12">或
+        <span>今天</span>下单，
+        <span>明天</span>送达</div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-md-6 addToCart">
+    <form ngForm (ngSubmit)="addToCart();" #addingForm="ngForm">
+      <div class="row">
+        <div class="col-xs-12 col-md-3">
+          数量:
+          <!--模型绑定和表单验证-->
+          <input type="number" class="form-control" name="wareCount" [(ngModel)]="wareCount" required pattern="^[1-9][0-9]*$" #wareCountControl="ngModel"
+          />
+          <!--表单验证提示-->
+          <span *ngIf="!wareCountControl.valid && (wareCountControl.touched || wareCountControl.dirty)">请输入合法的数字</span>
+        </div>
+        <div class="col-xs-12 col-md-9">
+          <!--阻止非法的提交-->
+          <button type="submit" class="btn" [disabled]="!addingForm.valid || !ware?.stock">加入购物车</button>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
-<!--商品名称结束-->
-<div>
-  {{ware?.description}}
+<!--加入购物车结果提示-->
+<div class="message" *ngIf="message">
+  {{message}}
 </div>
-<!--商品描述结束-->
-<div class="wareImageContainer">
-  <img [src]="ware?.imageUrl" />
-</div>
-<!--商品图片结束-->
-<div>
-  上架时间: {{ware?.addedTime | date:'yyyy-MM-dd HH:mm'}}
-</div>
-<!--上架时间结束-->
-<div>
-  售价:
-  <span [class.cheap]="ware?.price < 1">
-        {{ware?.price | currency:'CNY':'symbol-narrow' }}
-    </span>
-  元/斤
-</div>
-<!--售价结束-->
-<div>
-  库存:
-  <span *ngIf="ware?.stock == 0; else onSale">已售罄</span>
-  <ng-template #onSale>
-    <span *ngIf="ware?.stock < 10; else sellingOut" class="sellingOut">仅剩{{ware?.stock}}斤</span>
-    <ng-template #sellingOut>
-      <span>{{ware?.stock}}斤</span>
-    </ng-template>
-  </ng-template>
-</div>
-<!--库存结束-->
-<div>
-  数量:
-  <input type="number" name="wareCount" [value]="wareCount" />
-</div>
-<!--购买数量结束-->
-<div>
-  <button type="button">加入购物车</button>
-</div>
-<!--加入购物车按钮结束-->

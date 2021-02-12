@@ -10,12 +10,24 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class WareDetailComponent implements OnInit {
 
-  ware: Ware | unknown;
+  message: string;
+
+  ware: Ware;
 
   wareCount: number;
 
   constructor(private wareDetailService: WareDetailService, private route: ActivatedRoute) {
     this.wareCount = 1;
+  }
+
+  addToCart(): void {
+    this.wareDetailService.addToCart(this.ware.id, this.wareCount).subscribe(resp => {
+      this.message = resp.message;
+      const timeout = setTimeout(() => {
+        clearTimeout(timeout);
+        this.message = '';
+      }, 1500);
+    });
   }
 
   ngOnInit(): void {

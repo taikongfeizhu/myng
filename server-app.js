@@ -61,7 +61,7 @@ app.get('*', function (req, res) {
     res.sendFile(__dirname + '/src/index.html');
 });
 
-// 启动应用程序，并监听3000端口上的请求
+// 启动应用程序，并监听50424端口上的请求
 var server = app.listen(3000, function () {
     var host = server.address().address;
     var port = server.address().port;

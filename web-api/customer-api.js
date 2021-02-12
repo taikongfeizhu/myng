@@ -70,12 +70,20 @@ function logIn(req, res) {
 function getAuthName(req, res) {
     // 从客户端Cookies中读取加密的手机号码
     if (!req.headers.cookie) {
-        return null;
+        res.json({
+            success: false,
+            message: '客户未登录'
+        });
+        return;
     }
     var cookies = req.headers.cookie.split(';').map(x => x.trim());
     var phoneCookie = cookies.find(x => x.indexOf('auth=') == 0);
     if (!phoneCookie) {
-        return null;
+        res.json({
+            success: false,
+            message: '客户未登录'
+        });
+        return;
     }
     var encryptedPhone = phoneCookie.split('=')[1];
     if (!encryptedPhone) {

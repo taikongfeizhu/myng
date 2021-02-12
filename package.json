@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "mock": "node server-app.js",
+    "mock": "nodemon server-app.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -23,6 +23,7 @@
     "body-parser": "^1.19.0",
     "bootstrap": "^4.5.3",
     "co-body": "^6.1.0",
+    "nodemon": "^2.0.7",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

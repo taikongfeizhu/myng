@@ -1,0 +1,127 @@
+img {
+  width: 100%;
+}
+
+/*商品行：每一个商品都被显示在一个行中*/
+.wareRow {
+  margin-bottom: 10px;
+}
+/*商品行图片列*/
+.wareRow > .col-xs-4 {
+  padding-right: 10px;
+}
+/*商品行属性和操作列：所有的属性被一起显示在一个列中*/
+.wareRow > .col-xs-8 {
+  padding-left: 5px;
+}
+
+/*商品价格和数量操作行：每一个属性被显示在一个行中*/
+.wareRow > .col-xs-8 > div.row {
+  font-size: 13px;
+  padding-left: 15px;
+  margin-bottom: 5px;
+}
+
+/*商品名称行，未分列*/
+.wareRow > .col-xs-8 > div:first-child {
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+
+.wareRow > .col-xs-8 > div:first-child > a:last-child {
+  font-size: 15px;
+}
+
+/*商品价格和数量操作行中的列*/
+.wareRow > .col-xs-8 > div.row > div {
+  padding: 0;
+}
+/*商品价格*/
+.wareRow > .col-xs-8 > div.row > div.col-xs-5 {
+  color: #f23030;
+}
+/*商品数量操作列*/
+.wareRow > .col-xs-8 > div.row > div.col-xs-7 {
+  padding: 0 15px 0 2px;
+  flex-direction: row-reverse;
+  text-align: center;
+}
+
+.wareRow > .col-xs-8 > div.row > div.col-xs-7 > div, .wareRow > .col-xs-8 > div.row > div.col-xs-7 > input {
+  height: 25px;
+  border: 1px silver solid;
+  padding: 0 5px;
+}
+
+.wareRow > .col-xs-8 > div.row > div.col-xs-7 > div {
+  width: 25px;
+  border: 1px silver solid;
+}
+
+.wareRow > .col-xs-8 > div.row > div.col-xs-7 > div:first-child {
+  border-left: 0;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+.wareRow > .col-xs-8 > div.row > div.col-xs-7 > div:last-child {
+  border-right: 0;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  line-height: 22px;
+}
+
+.wareRow > .col-xs-8 > div.row > div.col-xs-7 > input {
+  width: 30px;
+}
+
+@media(min-width:769px){
+  .wareRow > .col-xs-8 > div.row > div.col-xs-7 > input {
+    width: 45px;
+  }
+}
+
+/*删除按钮*/
+.delete {
+  text-decoration: none;
+}
+
+/*结算按钮*/
+.btn {
+  background: #f0c14b;
+  background: linear-gradient(to bottom,#f7dfa5,#f0c14b);
+  border-color: #f7dfa5;
+  color: black;
+  font-size: 16px;
+  height: 40px;
+  width: 100%;
+  margin-top:20px;
+}
+
+/*购物车操作提示*/
+@keyframes message-show {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.message {
+  animation: message-show .5s;
+  position: absolute;
+  width: 100px;
+  height: 60px;
+  border-radius: 3px;
+  background-color: rgba(50, 50, 50, .7);
+  top: calc(50% - 30px);
+  left: calc(50% - 50px);
+  color: white;
+  font-size: 14px;
+  line-height: 14px;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 23px;
+}

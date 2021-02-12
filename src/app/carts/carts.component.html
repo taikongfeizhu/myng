@@ -1,0 +1,48 @@
+<div class="row" *ngIf="cartWares && cartWares.length">
+  <div *ngFor="let ware of cartWares" class="col-xs-12 col-md-6">
+    <div class="row wareRow">
+      <div class="col-xs-4">
+        <img alt="ware" [src]="ware.thumbnailUrl" [title]="ware.wareName" />
+      </div>
+      <div class="col-xs-8">
+        <div>
+          <a [routerLink]="['/ware-detail', ware.wareId]" [attr.aria-label]="'导航到' + ware.wareName + '的详情页面'">{{ware.wareName}}</a>
+        </div>
+        <div class="row">
+          <div class="col-xs-5">
+            {{ware.price | currency:'CNY':'symbol-narrow' }}
+          </div>
+          <div class="col-xs-7">
+            <!--绑定事件click的处理方法-->
+            <div [style.color]="ware.count < 2 ? 'silver' : 'inherit'" (click)="decreaseWareCount(ware);">-</div>
+            <!--绑定事件change的处理方法-->
+            <input type="number" [value]="ware.count" (change)="updateWareCount(ware, $event.target, $event);"/>
+            <!--绑定事件click的处理方法-->
+            <div (click)="increaseWareCount(ware);">+</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-5"></div>
+          <div class="col-xs-7">
+            <!--绑定事件click的处理方法-->
+            <a class="delete" (click)="removeWare(ware.id)">删除</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12">
+    <button type="button" class="btn">去结算</button>
+  </div>
+</div>
+<div class="row" *ngIf="!cartWares || !cartWares.length">
+  <div class="col-xs-12">
+    您的购物车是空的
+  </div>
+</div>
+<!--购物车操作提示-->
+<div class="message" *ngIf="message">
+  {{message}}
+</div>
+<!--显示商品搜索视图-->
+<ware-search [searchBoxStyle]="{'border-color': 'orange'}" (onSearch)="logSearch($event);"></ware-search>
