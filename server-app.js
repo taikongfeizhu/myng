@@ -10,6 +10,7 @@ app.use(bodyParser.json());
 app.use('/node_modules', express.static('node_modules'));
 app.use('/src', express.static('src'));
 app.use('/images', express.static('images'));
+app.use('/dist', express.static('dist'));
 
 // 注册客户业务Web API
 var customerApi = require('./web-api/customer-api');
@@ -56,8 +57,13 @@ app.get('/api/cart/total-count', function(req, res) {
     cartApi.getTotalCount(req,res);
 });
 
+app.get('/dist/*', function (req, res) {
+  res.sendFile(__dirname + '/dist/index.html');
+});
+
+
 // 路由配置：当客户端请求服务端根路径（即http://localhost:50424/）时，返回目录src下的HTML文件index.html
-app.get('*', function (req, res) {
+ app.get('*', function (req, res) {
     res.sendFile(__dirname + '/src/index.html');
 });
 

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { WidgetsModule } from '../widgets/widgets.module';
 import { WareComponent } from './ware.component';
 import { WareRoutingModule } from './ware-routing.module';
-import { FormsModule } from '@angular/forms';
 import { WareService } from './ware.service';
 
 @NgModule({
@@ -18,7 +18,7 @@ import { WareService } from './ware.service';
   ],
   imports: [
     CommonModule,
-    FormsModule,
+    WidgetsModule,
     WareRoutingModule,
   ]
 })

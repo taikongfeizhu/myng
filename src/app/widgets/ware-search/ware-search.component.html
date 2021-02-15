@@ -1,0 +1,13 @@
+<div class="wrapper row">
+  <form ngForm (ngSubmit)="search()" #searchForm="ngForm">
+    <div class="row">
+      <div class="col-xs-9">
+        <input type="text" name="wareName" [(ngModel)]="wareName" required class="form-control" placeholder="搜索商品"
+          [ngStyle]="searchBoxStyle"/>
+      </div>
+      <div class="col-xs-3">
+        <button type="submit" [disabled]="!searchForm.valid" class="btn btn-warning glyphicon glyphicon-search">搜索</button>
+      </div>
+    </div>
+  </form>
+</div>

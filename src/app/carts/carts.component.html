@@ -40,9 +40,5 @@
     您的购物车是空的
   </div>
 </div>
-<!--购物车操作提示-->
-<div class="message" *ngIf="message">
-  {{message}}
-</div>
 <!--显示商品搜索视图-->
-<ware-search [searchBoxStyle]="{'border-color': 'orange'}" (onSearch)="logSearch($event);"></ware-search>
+<app-ware-search [searchBoxStyle]="{'border-clolor':'orange'}" (searchEvt)="logSearch($event)"></app-ware-search>

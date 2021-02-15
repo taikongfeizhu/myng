@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthGuard } from '../shared/services/auth.guard';
 
 const routes: Routes = [
   {
@@ -8,7 +9,12 @@ const routes: Routes = [
     loadChildren: () => import('./customers/customers.module').then((mod) => mod.CustomersModule)
   },
   {
-    path: '*',
+    path: 'carts',
+    canLoad: [AuthGuard],
+    loadChildren: () => import('./carts/carts.module').then((mod) => mod.CartsModule)
+  },
+  {
+    path: '**',
     redirectTo: ''
   }
 ];

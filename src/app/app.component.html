@@ -11,8 +11,9 @@
       </a>
     </div>
     <div>
-      <a [routerLink]="'/customers/log-in'">登录</a>
-      <span class="glyphicon glyphicon-shopping-cart">0</span>
+      <a [routerLink]="'/customers/log-in'" *ngIf="!customerName; else welcome">登录</a>
+      <ng-template #welcome>欢迎，{{ customerName }}</ng-template>
+      <span appAuth class="glyphicon glyphicon-shopping-cart" [routerLink]="'/carts'">{{ cartTotal }}</span>
     </div>
   </div>
 </nav>

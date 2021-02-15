@@ -1,4 +1,6 @@
-var customers = []; // 客户数组
+var customers = [
+
+];
 
 /**
  * 注册Web API

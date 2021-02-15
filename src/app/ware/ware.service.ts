@@ -27,4 +27,12 @@ export class WareService {
   getWare(wareId: number): Observable<GenericServiceResult<Array<Ware>>> {
     return this.httpClient.get<GenericServiceResult<Array<Ware>>>('/api/ware/detail', { params: { wareId: wareId.toString() } });
   }
+
+  search(wareName: string): Observable<GenericServiceResult<Array<Ware>>> {
+    return this.httpClient.get<GenericServiceResult<Array<Ware>>>('/api/ware/search', {
+      params: {
+        wareName
+      }
+    });
+  }
 }

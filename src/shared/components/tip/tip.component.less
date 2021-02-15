@@ -1,0 +1,25 @@
+@keyframes message-show {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.message {
+  animation: message-show .5s;
+  position: absolute;
+  width: 100px;
+  height: 60px;
+  border-radius: 3px;
+  background-color: rgba(50, 50, 50, .7);
+  top: calc(50% - 30px);
+  left: calc(50% - 50px);
+  color: white;
+  font-size: 14px;
+  line-height: 14px;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 23px;
+  z-index: 2000;
+}

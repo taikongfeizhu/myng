@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerService } from '../../customers.service';
 import { Customer } from '../../customers.model';
+import { CustomerNameService } from '../../../../shared/services/customer-name.service';
+import { CartTotalService } from '../../../../shared/services/cat-total.service';
 
 @Component({
   selector: 'app-login-in',
@@ -18,7 +20,13 @@ export class LoginInComponent implements OnInit {
    * @param route 活动路由
    * @param router 路由器
    */
-  constructor(private customerService: CustomerService, private route: ActivatedRoute, private router: Router) {
+  constructor(
+    private customerService: CustomerService,
+    private cartTotalService: CartTotalService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private customerNameService: CustomerNameService
+  ) {
     // 初始化视图模型customer，这一步不能少
     this.customer = new Customer();
 
@@ -35,6 +43,8 @@ export class LoginInComponent implements OnInit {
       if (x.success){
         console.log('登录成功');
         this.router.navigate(['/']);
+        this.customerNameService.updateCustomerName();
+        this.cartTotalService.updateCartTotal();
       } else {
         console.error(x.message);
       }

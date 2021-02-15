@@ -1,4 +1,11 @@
+<app-ware-search></app-ware-search>
 <div class="row">
+  <!--当搜索时，显示搜索关键字-->
+  <div *ngIf="wareName" class="col-xs-12">
+    <h4>
+      包含“{{wareName}}”的商品:
+    </h4>
+  </div>
   <div *ngFor="let ware of wares" class="col-xs-12 col-md-6">
     <div class="row wareRow">
       <div class="col-xs-4">
