@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {from, Observable, of} from 'rxjs';
+import {Component, Inject, OnInit} from '@angular/core';
+import { UserService, API_URL } from './user.service';
 
 @Component({
   selector: 'app-user',
@@ -7,23 +7,14 @@ import {from, Observable, of} from 'rxjs';
   styleUrls: ['./user.component.less']
 })
 export class UserComponent implements OnInit {
-
-  constructor() { }
-
-  getData(): void {
-    const persons = [
-      { name: 'aaa', age: 24, salary: 2000 },
-      { name: 'bbb', age: 25, salary: 2100 },
-      { name: 'ccc', age: 26, salary: 2200 },
-      { name: 'ddd', age: 27, salary: 2300 }
-    ];
-
-    const myObservable = from(persons);
-    myObservable.subscribe(person => console.log(person));
-  }
+  constructor(
+    private userService: UserService,
+    @Inject(API_URL) private url: string
+  ) {}
 
   ngOnInit(): void {
-    console.log('>>> loaded');
+    this.userService.sayHi();
+    console.log(this.url, '>>>>');
   }
 
 }

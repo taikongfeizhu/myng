@@ -1,5 +1,11 @@
 var customers = [
-
+  {
+    id: 1,
+    name: 'huangjian',
+    phone: '15811221820',
+    password: '123456',
+    email: 'taikongfeizhu@163.com'
+  }
 ];
 
 /**

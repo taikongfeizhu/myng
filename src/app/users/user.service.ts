@@ -1,9 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root'
-})
+export const API_URL = 'API_URL';
+
+@Injectable()
 export class UserService {
 
-  constructor() { }
+  constructor(
+    @Inject('API_URL') private url: string
+  ) { }
+
+  sayHi(): void{
+    console.log('say hi', this.url);
+  }
 }

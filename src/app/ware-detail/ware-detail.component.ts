@@ -35,6 +35,7 @@ export class WareDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // https://blog.csdn.net/changyinling520/article/details/77856933
     const waredId: number = this.route.snapshot.params.id;
     this.wareDetailService.getWare(waredId).subscribe(x => {
       if (!x.success){
