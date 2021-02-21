@@ -17,4 +17,8 @@ export class UserComponent implements OnInit {
     console.log(this.url, '>>>>');
   }
 
+  getData(): void {
+    console.log(API_URL);
+  }
+
 }
